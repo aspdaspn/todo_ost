@@ -62,10 +62,40 @@
 
   /* Style the priority field */
   .priority {
-    position: absolute;
-    right: 40px;
     top: 0px;
     padding: 12px 16px 12px 16px;
+    color: red;
+  }
+  
+  .priority.p1 {
+    position: absolute;
+    right: 100px;
+  }
+  
+  .priority.p1.checked {
+    color: green;
+  }
+
+  .priority.p2 {
+    position: absolute;
+    right: 70px;
+  }
+  
+  .priority.p2.checked ~ .priority.p1.checked {color: green} 
+    /*color: green;*/
+  
+
+  .priority.p3 {
+    position: absolute;
+    right: 40px;
+  }
+
+  .priority.p2.checked {
+    color: green;
+  }
+
+  .priority:hover {
+    color: blue;
   }
   
   /* Style the close button */

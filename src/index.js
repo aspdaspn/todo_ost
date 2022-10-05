@@ -6,12 +6,12 @@ for (i = 0; i < myNodelist.length; i++) {
   var spanClose = document.createElement("SPAN");
   var spanPrio = document.createElement("SPAN");
   var txtClose = document.createTextNode("🗑");
-  var txtPrio = document.createTextNode("🗲");
+  //var txtPrio = document.createTextNode("🗲🗲🗲");
   spanClose.className = "close";
-  spanPrio.className = "priority";
-  spanPrio.appendChild(txtPrio);
+  //spanPrio.className = "priority";
+  //spanPrio.appendChild(txtPrio);
   spanClose.appendChild(txtClose);
-  myNodelist[i].appendChild(spanPrio);
+  //myNodelist[i].appendChild(spanPrio);
   myNodelist[i].appendChild(spanClose);
 }
 
@@ -49,7 +49,7 @@ function newElement() {
   var spanClose = document.createElement("SPAN");
   var spanPrio = document.createElement("SPAN");
   var txtClose = document.createTextNode("🗑");
-  var txtPrio = document.createTextNode("🗲");
+  var txtPrio = document.createTextNode("🗲🗲🗲");
   spanPrio.className = "priority";
   spanPrio.appendChild(txtPrio);
   li.appendChild(spanPrio);
