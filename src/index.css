@@ -18,7 +18,7 @@
     cursor: pointer;
     position: relative;
     padding: 12px 8px 12px 40px;
-    background: #eee;
+    background: #e0e0e0;
     font-size: 18px;
     transition: 0.2s;
   
@@ -31,17 +31,17 @@
   
   /* Set all odd list items to a different color (zebra-stripes) */
   ul li:nth-child(odd) {
-    background: #f9f9f9;
+    background: #f0f0f0;
   }
   
   /* Darker background-color on hover */
   ul li:hover {
-    background: #ddd;
+    background: #00b3a4;
   }
   
   /* When clicked on, add a background color and strike out text */
   ul li.checked {
-    background: #888;
+    background: #a9a9a9;
     color: #fff;
     text-decoration: line-through;
   }
@@ -61,41 +61,42 @@
   }
 
   /* Style the priority field */
-  .priority {
-    top: 0px;
-    padding: 12px 16px 12px 16px;
-    color: red;
+  li[data-prio="1"] .prio1 {
+    color: #585858;
+  }
+
+  
+  li[data-prio="2"] .prio1, li[data-prio="2"] .prio2 {
+    color: #585858;
+  }
+
+  li[data-prio="3"] .prio1, li[data-prio="3"] .prio2, li[data-prio="3"] .prio3 { 
+    color: #585858;
   }
   
-  .priority.p1 {
+  span[class^="prio"] {
+    top: 0px;
+    padding: 12px 16px 12px 16px;
+    color: white;
+  }
+  
+  span.prio1 {
     position: absolute;
     right: 100px;
   }
-  
-  .priority.p1.checked {
-    color: green;
-  }
 
-  .priority.p2 {
+  span.prio2 {
     position: absolute;
     right: 70px;
   }
-  
-  .priority.p2.checked ~ .priority.p1.checked {color: green} 
-    /*color: green;*/
-  
 
-  .priority.p3 {
+  span.prio3 {
     position: absolute;
     right: 40px;
   }
 
-  .priority.p2.checked {
-    color: green;
-  }
-
-  .priority:hover {
-    color: blue;
+  span[class^="prio"]:hover {
+    color: #005851; 
   }
   
   /* Style the close button */
