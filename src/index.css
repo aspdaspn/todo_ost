@@ -29,13 +29,20 @@
     user-select: none;
   }
   
+  /* List header */
+  ul li#liheader {
+    background-color: #005851;
+    color: #fff;
+    font-weight: bold;
+  }
+
   /* Set all odd list items to a different color (zebra-stripes) */
   ul li:nth-child(odd) {
     background: #f0f0f0;
   }
   
   /* Darker background-color on hover */
-  ul li:hover {
+  ul li[data-prio]:hover {
     background: #00b3a4;
   }
   
@@ -97,6 +104,11 @@
 
   span[class^="prio"]:hover {
     color: #005851; 
+  }
+
+  span.ptitle {
+    position: absolute;
+    right: 40px;
   }
   
   /* Style the close button */
