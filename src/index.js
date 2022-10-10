@@ -45,7 +45,7 @@ function setEventToDeleteLine() {
   }
 }
 
-function sortList() {
+function sortList(p1) {
   let i, switching, b, shouldSwitch, dir, switchcount = 0;
   switching = true;
   // Set the sorting direction to ascending:
@@ -57,14 +57,28 @@ function sortList() {
     for (i = 1; i < (b.length - 1); i++) {
       shouldSwitch = false;
       if (dir === "asc") {
-        if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
+        if (p1 === 'task') {
+          if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        } else {
+          if (b[i].dataset.prio < b[i + 1].dataset.prio) {
+            shouldSwitch = true;
+            break;
+          }
         }
       } else if (dir === "desc") {
-        if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
+        if (p1 === 'task') {
+          if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        } else {
+          if (b[i].dataset.prio > b[i + 1].dataset.prio) {
+            shouldSwitch = true;
+            break;
+          }
         }
       }
     }
@@ -96,8 +110,13 @@ function newElement() {
     if (ifHasHeader === null) {
       document.getElementById("myUL").appendChild(liHeader);
       const sortTask = document.querySelector('span[class=taskasc]');
-      console.log(sortTask);
-      sortTask.addEventListener('click', sortList, false);
+      sortTask.addEventListener('click', function(ev) {
+          sortList('task');
+      });
+      const sortPrio = document.querySelector('span[class=pasc]');
+      sortPrio.addEventListener('click', function(ev) {
+          sortList('pasc');
+      });
     }
     document.getElementById("myUL").appendChild(li);
   }
