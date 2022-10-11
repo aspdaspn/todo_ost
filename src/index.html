@@ -1,24 +1,47 @@
-<!DOCTYPE html>
-<html>
 <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <title>Todo App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 </head>
+
 <body>
-    <div id="myDIV" class="header">
-        <h2>My To Do List</h2>
-        <input type="text" id="myInput" placeholder="Aufgabe...">
-        <span onclick="newElement()" class="addBtn">Neu</span>
+
+  <header>
+    <div class="app-header">
+    Todo App
+    </div>
+  </header>
+
+  <div class="content"> 
+    <div class="flex-horizontal"> 
+      <input type="text" class="input" placeholder="Aufgabe..." id="txt-add">
+      <button type="submit" class="button" id="btn-add">Hinzuzfügen</button>
+    </div>
+    <div class="flex-horizontal flex-left"> 
+      <input type="checkbox" class="show-checkbox">
+      <label>Alle anzeigen</label>
+    </div>
+
+    <div class="flex-vertical task-list">
+      <div class="task-entry">
+        <input type="checkbox" name="done" class="done-checkbox">
+        <label class="bolt prio-1">🗲</label>
+        <label class="bolt prio-2">🗲</label>
+        <label class="bolt prio-3">🗲</label>
+        <label class="task-description"> Wohnung aufräumen </label>
+        <button type="submit" class="button delete" name="delete">Löschen</button>
       </div>
-      
-      <ul id="myUL">
-        <li>Hit the gym</li>
-        <li class="checked">Pay bills</li>
-        <li>Meet George</li>
-        <li>Buy eggs</li>
-        <li>Read a book</li>
-        <li>Organize office</li>
-      </ul>
+      <div class="task-entry">
+        <input type="checkbox" name="done" class="done-checkbox">
+        <label class="bolt prio-1">🗲</label>
+        <label class="bolt prio-2">🗲</label>
+        <label class="bolt prio-3">🗲</label>
+        <label class="task-description"> Katze füttern </label>
+        <button type="submit" class="button delete" name="delete">Löschen</button>
+      </div>
+    </div>
+  </div>
+
 </body>
-<script src="index.js"></script>
-</html>

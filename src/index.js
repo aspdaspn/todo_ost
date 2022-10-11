@@ -1,66 +1,61 @@
-// Create a priority field and append it to each list item
-// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var spanClose = document.createElement("SPAN");
-  var spanPrio = document.createElement("SPAN");
-  var txtClose = document.createTextNode("🗑");
-  var txtPrio = document.createTextNode("🗲");
-  spanClose.className = "close";
-  spanPrio.className = "priority";
-  spanPrio.appendChild(txtPrio);
-  spanClose.appendChild(txtClose);
-  myNodelist[i].appendChild(spanPrio);
-  myNodelist[i].appendChild(spanClose);
+$(function() {
+  register_checkboxes();
+  register_delete_buttons();
+});
+
+function register_checkboxes() {
+ // Select all checkboxes with the name 'done' using querySelectorAll.
+ const checkboxes = document.querySelectorAll("input[type=checkbox][name=done]");
+ // strike through task if checkbox is checked
+ checkboxes.forEach(function(checkbox) {
+   checkbox.addEventListener('change', function() {
+     const description = checkbox.parentElement.getElementsByClassName("task-description")[0];
+     description.classList.toggle("strikethrough");
+   })
+ });
 }
 
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
+function register_delete_buttons() {
+ // Select all checkboxes with the name 'done' using querySelectorAll.
+ const btns = document.querySelectorAll("button[type=submit][name=delete]");
+ // strike through task if checkbox is checked
+ btns.forEach(function(btn) {
+   btn.addEventListener('click', function() {
+     btn.parentElement.classList.add("removed");
+   })
+ });
 }
 
-// Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
+function register_bolts() {
+ 
+}
 
-// Create a new list item when clicking on the "Add" button
-function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("Sie sollten etwas eingeben");
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
-  document.getElementById("myInput").value = "";
 
-  var spanClose = document.createElement("SPAN");
-  var spanPrio = document.createElement("SPAN");
-  var txtClose = document.createTextNode("🗑");
-  var txtPrio = document.createTextNode("🗲");
-  spanPrio.className = "priority";
-  spanPrio.appendChild(txtPrio);
-  li.appendChild(spanPrio);
-  spanClose.className = "close";
-  spanClose.appendChild(txtClose);
-  li.appendChild(spanClose);
-
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
+// select add button and add event listener
+document.getElementById("btn-add").addEventListener("click", add_todo);
+// function to add new todo
+function add_todo() {
+ // get description from text input
+ const description = document.getElementById("txt-add");
+ if (!description.value) {
+   alert("'Aufgabe' darf nicht leer sein");
+   return;
+ }
+ // add to task-list 
+ const task_list = document.getElementsByClassName("task-list")[0]; //task_list 
+ task_list.innerHTML += 
+             `<div class='flex-horizontal task-entry'> \
+               <input type='checkbox' name='done' class='done-checkbox'> \
+               <label class='bolt prio-1'>🗲</label> \
+               <label class='bolt prio-2'>🗲</label> \
+               <label class='bolt prio-3'>🗲</label> \
+               <label class='task-description'> ${description.value} </label> \
+               <button type='submit' class='button delete' name='delete'>Löschen</button> \
+             </div>`;
+ // register new elements
+ register_checkboxes();
+ register_delete_buttons()
+ 
+ // remove text
+ description.value = "";
 }
