@@ -2,6 +2,7 @@ $(function () {
   register_checkboxes()
   register_delete_buttons()
   register_bolts()
+  register_priority_selectors()
 })
 
 function register_checkboxes() {
@@ -46,6 +47,54 @@ function register_bolts() {
   })
 }
 
+function register_priority_selectors() {
+  const sort_psort = document.querySelector('span[class=psort]');
+  sort_psort.addEventListener('click', function(ev) {
+    let val = sort_psort.innerHTML;
+    /*
+    console.log(val);
+    let p1 = 'Priorität ';
+    console.log(p1.codePointAt(p1.length - 1));
+    
+    let p2 = 'Priorität 🠕';
+    console.log(p2.codePointAt(p2.length - 1));
+    
+    let p3 = 'Priorität 🠗';
+    console.log(p3.codePointAt(p3.length - 1));
+    */
+    let lstchar = val.codePointAt(val.length - 1);
+    if (lstchar === 32 || lstchar === 56341) {   // Space or Up Arrow
+      console.log('A');
+      val = val.slice(0, -1) + '🠗';
+    } else if (lstchar === 56343) { // Down Arrow
+      console.log('B');
+      val = val.slice(0, -1) + '🠕';
+    } else {
+      console.log('C');
+    }
+    sort_psort.innerHTML = val;
+    sortList('prio');
+  });
+
+  const sort_tsort = document.querySelector('span[class=tsort]');
+  sort_tsort.addEventListener('click', function(ev) {
+    let val = sort_tsort.innerHTML;
+    let lstchar = val.codePointAt(val.length - 1);
+    if (lstchar === 32 || lstchar === 56341) {   // Space or Up Arrow
+      console.log('A');
+      val = val.slice(0, -1) + '🠗';
+    } else if (lstchar === 56343) { // Down Arrow
+      console.log('B');
+      val = val.slice(0, -1) + '🠕';
+    } else {
+      console.log('C');
+    }
+    sort_tsort.innerHTML = val;
+    sortList('task');
+  });
+
+}
+
 // select add button and add event listener
 document.getElementById('btn-add').addEventListener('click', add_todo)
 // function to add new todo
@@ -70,6 +119,7 @@ function add_todo() {
   register_checkboxes()
   register_delete_buttons()
   register_bolts()
+  register_priority_selectors()
 
   // remove text
   description.value = ''
@@ -117,5 +167,55 @@ function setPrio(task_entry, prio) {
       break
     default:
       console.log('prio not definded')
+  }
+}
+
+function sortList(p1) {
+  let i, switching, b, shouldSwitch, dir, switchcount = 0;
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc";
+  // Main search loop
+  while (switching) {
+    switching = false;
+    b = document.getElementsByClassName('task-entry');
+    for (i = 1; i < (b.length - 1); i++) {
+      shouldSwitch = false;
+      if (dir === "asc") {
+        if (p1 === 'task') {
+          if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        } else {
+          if (b[i].dataset.prio < b[i + 1].dataset.prio) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+      } else if (dir === "desc") {
+        if (p1 === 'task') {
+          if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        } else {
+          if (b[i].dataset.prio > b[i + 1].dataset.prio) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+    }
+    if (shouldSwitch) {
+      b[i].parentNode.insertBefore(b[i + 1], b[i]);
+      switching = true;
+      switchcount ++;
+    } else {
+      if (switchcount === 0 && dir === "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
   }
 }
