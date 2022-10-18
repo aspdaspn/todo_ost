@@ -101,9 +101,9 @@ function add_todo() {
   const task_list = document.getElementsByClassName('task-list')[0] //task_list
   task_list.innerHTML += `<div class='flex-horizontal task-entry'> \
                 <input type='checkbox' name='done' class='done-checkbox'> \
-                <label class='bolt prio-1'>🗲</label> \
-                <label class='bolt prio-2'>🗲</label> \
-                <label class='bolt prio-3'>🗲</label> \
+                <label class="bolt" name="prio-1">🗲</label> \
+                <label class="bolt" name="prio-2">🗲</label> \
+                <label class="bolt" name="prio-3">🗲</label> \
                 <label class='task-description'> ${description.value} </label> \
                 <button type='submit' class='button delete' name='delete'>Löschen</button> \
               </div>`
