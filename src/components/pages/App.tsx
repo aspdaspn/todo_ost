@@ -1,39 +1,62 @@
-export const App = () => {
-  return <div>{
-    <div className='todoapp'>
-      <header>
-        <div className='app-header'>
-          Todo App
-        </div>
-      </header>
+import './App.css'
 
-      <div className='content'>
-        <form>
-          <div className='flex-horizontal'>
-            <input type='text' className='input' placeholder='Aufgabe...' id='txt-add' />
-            <button type='submit' className='button' id='btn-add'>Hinzufügen</button>
-          </div>
-          <div className='flex-horizontal flex-left'>
-            <input type='checkbox' name='show-checkbox' id='show-all' />
-            <label htmlFor='show-all'>Alle anzeigen</label>
-          </div>
-        </form>
-        
-        <div className='flex-vertical task-list'>
-          <div className='task-entry'>
-            <div className='prio-header'> Priorität </div>
-            <div className='description-header'> Beschreibung </div>
-            <input type='checkbox' name='done' className='done-checkbox' />
-            <div className='bolt prio-1'>🗲</div>
-            <div className='bolt prio-2'>🗲</div>
-            <div className='bolt prio-3'>🗲</div>
-            <div className='task-deskription'> Wohnung aufräumen </div>
-            <button type='submit' className='button delete' name='delete'>
-              Löschen
-            </button>
+export const App = () => {
+  return (
+    <div>
+      {
+        <div>
+          <header>
+            <div className="app-header">Todo App</div>
+          </header>
+          <div className="content">
+            <div className="flex-horizontal">
+              <input
+                type="text"
+                className="input"
+                placeholder="Aufgabe..."
+                id="txt-add"
+              />
+              <button type="submit" className="button" id="btn-add">
+                Hinzuzfügen
+              </button>
+            </div>
+            <div className="flex-horizontal flex-left">
+              <input type="checkbox" className="show-checkbox" />
+              <label>Alle anzeigen</label>
+            </div>
+            <div className="flex-vertical task-list">
+              <div className="task-entry">
+                <label className="prio-header">
+                  <span className="psort">Priorität&nbsp; </span>
+                </label>
+                <label className="description-header">
+                  <span className="tsort">Beschreibung </span>
+                </label>
+              </div>
+              <div className="task-entry">
+                <input type="checkbox" name="done" className="done-checkbox" />
+                <label className="bolt" /*name="prio-1"*/>🗲</label>
+                <label className="bolt" /*name="prio-2"*/>🗲</label>
+                <label className="bolt" /*name="prio-3"*/>🗲</label>
+                <label className="task-description"> Wohnung aufräumen </label>
+                <button type="submit" className="button delete" name="delete">
+                  Löschen
+                </button>
+              </div>
+              <div className="task-entry">
+                <input type="checkbox" name="done" className="done-checkbox" />
+                <label className="bolt" /*name="prio-1"*/>🗲</label>
+                <label className="bolt" /*name="prio-2"*/>🗲</label>
+                <label className="bolt" /*name="prio-3"*/>🗲</label>
+                <label className="task-description"> Katze füttern </label>
+                <button type="submit" className="button delete" name="delete">
+                  Löschen
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      }
     </div>
-  }</div>
+  )
 }
