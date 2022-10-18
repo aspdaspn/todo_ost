@@ -2,6 +2,7 @@ $(function () {
   register_checkboxes()
   register_delete_buttons()
   register_bolts()
+  document.getElementById('btn-add').addEventListener('click', add_todo);
 })
 
 function register_checkboxes() {
@@ -47,7 +48,8 @@ function register_bolts() {
 }
 
 // select add button and add event listener
-document.getElementById('btn-add').addEventListener('click', add_todo)
+
+
 // function to add new todo
 function add_todo() {
   // get description from text input
