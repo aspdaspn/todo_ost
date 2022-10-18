@@ -1,9 +1,7 @@
-$(function () {
   register_checkboxes()
   register_delete_buttons()
   register_bolts()
   register_priority_selectors()
-})
 
 function register_checkboxes() {
   // Select all checkboxes with the name 'done' using querySelectorAll.
@@ -35,7 +33,6 @@ function register_delete_buttons() {
 function register_bolts() {
   const bolts = document.querySelectorAll('label[class=bolt]')
   // Remove this debug later
-  console.log(bolts.length);
 
   bolts.forEach(function (bolt) {
     bolt.addEventListener('click', function () {
@@ -56,13 +53,10 @@ function register_priority_selectors() {
     let val = sort_psort.innerHTML;
     let lstchar = val.codePointAt(val.length - 1);
     if (lstchar === 32 || lstchar === 56341) {   // Space or Up Arrow
-      console.log('A');
       val = val.slice(0, -2) + '🠗';
     } else if (lstchar === 56343) { // Down Arrow
-      console.log('B');
       val = val.slice(0, -2) + '🠕';
     } else {
-      console.log('C');
     }
     sort_psort.innerHTML = val;
     sortList('prio');
@@ -73,13 +67,10 @@ function register_priority_selectors() {
     let val = sort_tsort.innerHTML;
     let lstchar = val.codePointAt(val.length - 1);
     if (lstchar === 32 || lstchar === 56341) {   // Space or Up Arrow
-      console.log('A');
       val = val.slice(0, -2) + '🠗';
     } else if (lstchar === 56343) { // Down Arrow
-      console.log('B');
       val = val.slice(0, -2) + '🠕';
     } else {
-      console.log('C');
     }
     sort_tsort.innerHTML = val;
     sortList('task');
