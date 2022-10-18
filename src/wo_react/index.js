@@ -2,6 +2,7 @@
   register_delete_buttons()
   register_bolts()
   register_priority_selectors()
+  show_all_selector()
 
 function register_checkboxes() {
   // Select all checkboxes with the name 'done' using querySelectorAll.
@@ -74,6 +75,18 @@ function register_priority_selectors() {
     }
     sort_tsort.innerHTML = val;
     sortList('task');
+  });
+
+}
+
+function show_all_selector() {
+  const showAllCheck = document.querySelector('input[type=checkbox][name=show-all]');
+  showAllCheck.addEventListener('change', function(ev) {
+    if (showAllCheck.checked) {
+      console.log('checked');
+    } else {
+      console.log('unchecked');
+    }
   });
 
 }
