@@ -34,6 +34,9 @@ function register_delete_buttons() {
 
 function register_bolts() {
   const bolts = document.querySelectorAll('label[class=bolt]')
+  // Remove this debug later
+  console.log(bolts.length);
+
   bolts.forEach(function (bolt) {
     bolt.addEventListener('click', function () {
       const taskPrio = getPrio(bolt.parentElement)
@@ -51,24 +54,13 @@ function register_priority_selectors() {
   const sort_psort = document.querySelector('span[class=psort]');
   sort_psort.addEventListener('click', function(ev) {
     let val = sort_psort.innerHTML;
-    /*
-    console.log(val);
-    let p1 = 'Priorität ';
-    console.log(p1.codePointAt(p1.length - 1));
-    
-    let p2 = 'Priorität 🠕';
-    console.log(p2.codePointAt(p2.length - 1));
-    
-    let p3 = 'Priorität 🠗';
-    console.log(p3.codePointAt(p3.length - 1));
-    */
     let lstchar = val.codePointAt(val.length - 1);
     if (lstchar === 32 || lstchar === 56341) {   // Space or Up Arrow
       console.log('A');
-      val = val.slice(0, -1) + '🠗';
+      val = val.slice(0, -2) + '🠗';
     } else if (lstchar === 56343) { // Down Arrow
       console.log('B');
-      val = val.slice(0, -1) + '🠕';
+      val = val.slice(0, -2) + '🠕';
     } else {
       console.log('C');
     }
@@ -82,10 +74,10 @@ function register_priority_selectors() {
     let lstchar = val.codePointAt(val.length - 1);
     if (lstchar === 32 || lstchar === 56341) {   // Space or Up Arrow
       console.log('A');
-      val = val.slice(0, -1) + '🠗';
+      val = val.slice(0, -2) + '🠗';
     } else if (lstchar === 56343) { // Down Arrow
       console.log('B');
-      val = val.slice(0, -1) + '🠕';
+      val = val.slice(0, -2) + '🠕';
     } else {
       console.log('C');
     }
@@ -181,26 +173,30 @@ function sortList(p1) {
     b = document.getElementsByClassName('task-entry');
     for (i = 1; i < (b.length - 1); i++) {
       shouldSwitch = false;
+      let name1 = b[i].getElementsByClassName('task-description')[0].innerHTML.toLowerCase();
+      let name2 = b[i + 1].getElementsByClassName('task-description')[0].innerHTML.toLowerCase();
       if (dir === "asc") {
         if (p1 === 'task') {
-          if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
+          if (name1 < name2) {
             shouldSwitch = true;
             break;
           }
         } else {
-          if (b[i].dataset.prio < b[i + 1].dataset.prio) {
+          // Sort by Priority
+          if (getPrio(b[i]) < getPrio(b[i + 1])) {
             shouldSwitch = true;
             break;
           }
         }
       } else if (dir === "desc") {
         if (p1 === 'task') {
-          if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+          if (name1 > name2) {
             shouldSwitch = true;
             break;
           }
         } else {
-          if (b[i].dataset.prio > b[i + 1].dataset.prio) {
+          // Sort by Priority
+          if (getPrio(b[i]) > getPrio(b[i + 1])) {
             shouldSwitch = true;
             break;
           }
