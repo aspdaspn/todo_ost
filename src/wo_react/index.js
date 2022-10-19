@@ -83,12 +83,26 @@ function show_all_selector() {
   const showAllCheck = document.querySelector('input[type=checkbox][name=show-all]');
   showAllCheck.addEventListener('change', function(ev) {
     if (showAllCheck.checked) {
-      console.log('checked');
+      if_hide_task('show');
     } else {
-      console.log('unchecked');
+      if_hide_task('hide');
     }
   });
+}
 
+function if_hide_task(p1) {
+    task = document.getElementsByClassName('task-entry');
+    for (let i = 1; i < task.length; i++) {
+      let t = task[i].getElementsByClassName('strikethrough')[0];
+      if (t != undefined) {
+        let div = t.parentElement;
+        if (p1 === 'hide') {
+          div.style.display = "none";
+        } else {
+          div.style.display = "grid";
+        }
+      }
+    }
 }
 
 // select add button and add event listener
