@@ -54,9 +54,9 @@ function register_priority_selectors() {
     let val = sort_psort.innerHTML;
     let lstchar = val.codePointAt(val.length - 1);
     if (lstchar === 32 || lstchar === 56341) {   // Space or Up Arrow
-      val = val.slice(0, -2) + '🠗';
+      val = val.slice(0, -2) + '<i class="fa-solid fa-arrow-down"></i>';
     } else if (lstchar === 56343) { // Down Arrow
-      val = val.slice(0, -2) + '🠕';
+      val = val.slice(0, -2) + '<i class="fa-solid fa-arrow-up"></i>';
     } else {
     }
     sort_psort.innerHTML = val;
@@ -65,12 +65,17 @@ function register_priority_selectors() {
 
   const sort_tsort = document.querySelector('span[class=tsort]');
   sort_tsort.addEventListener('click', function(ev) {
-    let val = sort_tsort.innerHTML;
-    let lstchar = val.codePointAt(val.length - 1);
+    let val = sort_tsort.getElementsByClassName('fa-arrow-down')[0];
+    if (val === undefined) {
+    let val = sort_tsort.getElementsByClassName('fa-arrow-down')[0];
+
+    }
+    console.log(val);
+    let lstchar = val.codePointAt(val.length - 2);
     if (lstchar === 32 || lstchar === 56341) {   // Space or Up Arrow
-      val = val.slice(0, -2) + '🠗';
-    } else if (lstchar === 56343) { // Down Arrow
-      val = val.slice(0, -2) + '🠕';
+      val = val.slice(0, -2) + '<i class="fa-solid fa-arrow-down-a-z"></i>';
+    } else if (lstchar === 62) { // Down Arrow
+      val = val.slice(0, -2) + '<i class="fa-solid fa-arrow-down-z-a"></i>';
     } else {
     }
     sort_tsort.innerHTML = val;
@@ -119,9 +124,9 @@ function add_todo() {
   const task_list = document.getElementsByClassName('task-list')[0] //task_list
   task_list.innerHTML += `<div class='flex-horizontal task-entry'> \
                 <input type='checkbox' name='done' class='done-checkbox'> \
-                <label class="bolt" name="prio-1">🗲</label> \
-                <label class="bolt" name="prio-2">🗲</label> \
-                <label class="bolt" name="prio-3">🗲</label> \
+                <label class="bolt" name="prio-1"><i class="fa-solid fa-bolt"></i></label> \
+                <label class="bolt" name="prio-2"><i class="fa-solid fa-bolt"></i></label> \
+                <label class="bolt" name="prio-3"><i class="fa-solid fa-bolt"></i></label> \
                 <label class='task-description'> ${description.value} </label> \
                 <button type='submit' class='button delete' name='delete'>Löschen</button> \
               </div>`
