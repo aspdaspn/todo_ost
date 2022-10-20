@@ -89,6 +89,7 @@ body {
   grid-column: 2 / 3;
   font-size: 22px;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .prio-header:hover {
