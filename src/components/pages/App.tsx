@@ -1,4 +1,6 @@
 import './App.css'
+import '../assets/css/solid.css'
+import '../assets/css/fontawesome.css'
 
 export const App = () => {
   return (
@@ -21,34 +23,55 @@ export const App = () => {
               </button>
             </div>
             <div className="flex-horizontal flex-left">
-              <input type="checkbox" className="show-checkbox" />
+              <input
+                type="checkbox"
+                className="show-checkbox"
+                name="show-all"
+                checked
+              />
               <label>Alle anzeigen</label>
             </div>
             <div className="flex-vertical task-list">
               <div className="task-entry">
                 <label className="prio-header">
-                  <span className="psort">Priorität&nbsp; </span>
+                  <span className="sort" data-sort="none">
+                    Priorität
+                  </span>
                 </label>
                 <label className="description-header">
-                  <span className="tsort">Beschreibung </span>
+                  <span className="sort" data-sort="none">
+                    Beschreibung
+                  </span>
                 </label>
               </div>
               <div className="task-entry">
                 <input type="checkbox" name="done" className="done-checkbox" />
-                <label className="bolt" /*name="prio-1"*/>🗲</label>
-                <label className="bolt" /*name="prio-2"*/>🗲</label>
-                <label className="bolt" /*name="prio-3"*/>🗲</label>
-                <label className="task-description"> Wohnung aufräumen </label>
+                <label className="bolt" /*name="prio-1"*/>
+                  <i className="fa-solid fa-bolt"></i>
+                </label>
+                <label className="bolt" /*name="prio-2"*/>
+                  <i className="fa-solid fa-bolt"></i>
+                </label>
+                <label className="bolt" /*name="prio-3"*/>
+                  <i className="fa-solid fa-bolt"></i>
+                </label>
+                <label className="task-description">Wohnung aufräumen</label>
                 <button type="submit" className="button delete" name="delete">
                   Löschen
                 </button>
               </div>
               <div className="task-entry">
                 <input type="checkbox" name="done" className="done-checkbox" />
-                <label className="bolt" /*name="prio-1"*/>🗲</label>
-                <label className="bolt" /*name="prio-2"*/>🗲</label>
-                <label className="bolt" /*name="prio-3"*/>🗲</label>
-                <label className="task-description"> Katze füttern </label>
+                <label className="bolt" /*name="prio-1"*/>
+                  <i className="fa-solid fa-bolt"></i>
+                </label>
+                <label className="bolt" /*name="prio-2"*/>
+                  <i className="fa-solid fa-bolt"></i>
+                </label>
+                <label className="bolt" /*name="prio-3"*/>
+                  <i className="fa-solid fa-bolt"></i>
+                </label>
+                <label className="task-description">Katze füttern</label>
                 <button type="submit" className="button delete" name="delete">
                   Löschen
                 </button>
