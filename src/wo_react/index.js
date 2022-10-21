@@ -1,7 +1,8 @@
-  register_checkboxes()
-  register_delete_buttons()
-  register_bolts()
-  register_priority_selectors()
+register_checkboxes()
+register_delete_buttons()
+register_bolts()
+register_sort_selector()
+show_all_selector()
 
 function register_checkboxes() {
   // Select all checkboxes with the name 'done' using querySelectorAll.
@@ -47,39 +48,69 @@ function register_bolts() {
   })
 }
 
-function register_priority_selectors() {
-  const sort_psort = document.querySelector('span[class=psort]');
-  sort_psort.addEventListener('click', function(ev) {
-    let val = sort_psort.innerHTML;
-    let lstchar = val.codePointAt(val.length - 1);
-    if (lstchar === 32 || lstchar === 56341) {   // Space or Up Arrow
-      val = val.slice(0, -2) + '🠗';
-    } else if (lstchar === 56343) { // Down Arrow
-      val = val.slice(0, -2) + '🠕';
-    } else {
+function register_sort_selector() {
+  const sort = document.getElementsByClassName('sort');
+  const states = ['none', 'up', 'down'];
+  const htmlCodes = ['', '<i class="fa-solid fa-arrow-up"></i>', '<i class="fa-solid fa-arrow-down"></i>'];
+
+  sort[0].addEventListener('click', function(ev) {
+    // Up, Down
+    sort[1].dataset.sort = states[0];
+    sort[1].innerHTML = "Beschreibung";
+    let i = states.indexOf(sort[0].dataset.sort);
+    i = ++i % states.length;
+    if (i === 0) {
+      ++i;
     }
-    sort_psort.innerHTML = val;
+    sort[0].dataset.sort = states[i];
+    sort[0].innerHTML = 'Priorität&nbsp;' + htmlCodes[i];
+    console.log(sort[0].innerHTML);
     sortList('prio');
   });
-
-  const sort_tsort = document.querySelector('span[class=tsort]');
-  sort_tsort.addEventListener('click', function(ev) {
-    let val = sort_tsort.innerHTML;
-    let lstchar = val.codePointAt(val.length - 1);
-    if (lstchar === 32 || lstchar === 56341) {   // Space or Up Arrow
-      val = val.slice(0, -2) + '🠗';
-    } else if (lstchar === 56343) { // Down Arrow
-      val = val.slice(0, -2) + '🠕';
-    } else {
+  sort[1].addEventListener('click', function(ev) {
+    sort[0].dataset.sort = states[0];
+    sort[0].innerHTML = "Priorität";
+    let i = states.indexOf(sort[1].dataset.sort);
+    i = ++i % states.length;
+    if (i === 0) {
+      ++i;
     }
-    sort_tsort.innerHTML = val;
+    sort[1].dataset.sort = states[i];
+    sort[1].innerHTML = 'Beschreibung&nbsp;' + htmlCodes[i];
+    console.log(sort[1].innerHTML);
     sortList('task');
   });
+}
 
+function show_all_selector() {
+  const showAllCheck = document.querySelector('input[type=checkbox][name=show-all]');
+  showAllCheck.addEventListener('change', function(ev) {
+    if (showAllCheck.checked) {
+      if_hide_task('show');
+    } else {
+      if_hide_task('hide');
+    }
+  });
+}
+
+function if_hide_task(p1) {
+    task = document.getElementsByClassName('task-entry');
+    for (let i = 1; i < task.length; i++) {
+      let t = task[i].getElementsByClassName('strikethrough')[0];
+      if (t != undefined) {
+        let div = t.parentElement;
+        if (p1 === 'hide') {
+          div.style.display = "none";
+        } else {
+          div.style.display = "grid";
+        }
+      }
+    }
 }
 
 // select add button and add event listener
-document.getElementById('btn-add').addEventListener('click', add_todo)
+
+
 // function to add new todo
 function add_todo() {
   // get description from text input
@@ -92,9 +123,9 @@ function add_todo() {
   const task_list = document.getElementsByClassName('task-list')[0] //task_list
   task_list.innerHTML += `<div class='flex-horizontal task-entry'> \
                 <input type='checkbox' name='done' class='done-checkbox'> \
-                <label class="bolt" name="prio-1">🗲</label> \
-                <label class="bolt" name="prio-2">🗲</label> \
-                <label class="bolt" name="prio-3">🗲</label> \
+                <label class="bolt" name="prio-1"><i class="fa-solid fa-bolt"></i></label> \
+                <label class="bolt" name="prio-2"><i class="fa-solid fa-bolt"></i></label> \
+                <label class="bolt" name="prio-3"><i class="fa-solid fa-bolt"></i></label> \
                 <label class='task-description'> ${description.value} </label> \
                 <button type='submit' class='button delete' name='delete'>Löschen</button> \
               </div>`
@@ -102,7 +133,7 @@ function add_todo() {
   register_checkboxes()
   register_delete_buttons()
   register_bolts()
-  register_priority_selectors()
+  register_sort_selector()
 
   // remove text
   description.value = ''
