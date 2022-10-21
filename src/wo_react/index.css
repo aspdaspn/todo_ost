@@ -89,6 +89,7 @@ body {
   grid-column: 2 / 3;
   font-size: 22px;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .prio-header:hover {
@@ -99,7 +100,7 @@ body {
   grid-column: 5 / 6;
   justify-self: start;
   text-align: left;
-  margin-left: 40px;
+  margin-left: 60px;
   font-size: 22px;
   font-weight: bold;
 }
@@ -128,7 +129,7 @@ body {
   grid-column: 5 / 6;
   justify-self: start;
   text-align: left;
-  margin-left: 40px;
+  margin-left: 60px;
   font-size: 20px;
 }
 
