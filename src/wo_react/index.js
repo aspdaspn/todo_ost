@@ -64,7 +64,6 @@ function register_sort_selector() {
     }
     sort[0].dataset.sort = states[i];
     sort[0].innerHTML = 'Priorität&nbsp;' + htmlCodes[i];
-    console.log(sort[0].innerHTML);
     sortList('prio');
   });
   sort[1].addEventListener('click', function(ev) {
@@ -77,7 +76,6 @@ function register_sort_selector() {
     }
     sort[1].dataset.sort = states[i];
     sort[1].innerHTML = 'Beschreibung&nbsp;' + htmlCodes[i];
-    console.log(sort[1].innerHTML);
     sortList('task');
   });
 }
@@ -205,7 +203,7 @@ function sortList(p1) {
           }
         } else {
           // Sort by Priority
-          if (getPrio(b[i]) < getPrio(b[i + 1])) {
+          if (getPrio(b[i]) + 1 < getPrio(b[i + 1]) + 1) {
             shouldSwitch = true;
             break;
           }
