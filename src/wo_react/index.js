@@ -109,7 +109,7 @@ function if_hide_task(p1) {
 }
 
 // select add button and add event listener
-
+document.getElementById('btn-add').addEventListener('click', add_todo)
 
 // function to add new todo
 function add_todo() {
