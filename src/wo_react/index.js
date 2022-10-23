@@ -15,6 +15,7 @@ function register_checkboxes() {
       const description = checkbox.parentElement.getElementsByClassName(
         'task-description'
       )[0]
+      checkbox.toggleAttribute('checked');
       description.classList.toggle('strikethrough')
     })
   })
