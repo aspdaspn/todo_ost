@@ -1,6 +1,4 @@
 import './App.css'
-import '../assets/css/solid.css'
-import '../assets/css/fontawesome.css'
 
 export const App = () => {
   return (
