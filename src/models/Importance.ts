@@ -1,1 +1,1 @@
-export type Importance = 1 | 2 | 3
+export type Importance = 0 | 1 | 2 | 3
