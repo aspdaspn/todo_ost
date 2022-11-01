@@ -1,32 +1,38 @@
 import { ListHeader } from 'components/controls/ListHeader'
 import { ListItem } from 'components/controls/ListItem'
-import { Todo } from 'models/Todo'
-import { Importance } from 'models/Importance'
+import { createTodo, Todo } from 'models/Todo'
+import { useState } from 'react'
 import { Input } from '../controls/Input'
 
-var list: Todo[] = [
-    {        
-        id: "test1",
-        text: "Wohnung Aufräumen",
-        done: false,
-        importance: 0
-    },
-    {        
-        id: "test2",
-        text: "Katze fütter",
-        done: false,
-        importance: 0
-    }
+
+
+var defaultList: Todo[] = [
+    createTodo("Wohnung aufräumen"),
+    createTodo("Katze füttern"),
 ]
 
 export const Content = () => {
+
+    const [items, setItems] = useState(defaultList)
+
+    const addItem = (item: Todo) => {
+        const newItems = [...items, item]
+        setItems(newItems)
+    }
+
+    const removeItem = (id: string) => {
+        const newItems = items.filter(i => i.id !== id)
+        setItems(newItems)
+    }
+
+    const itemList = items.map(item => <ListItem text={item.text} importance={item.importance} />)
+
     return (
         <div className="content">
             <Input />
             <div className="flex-vertical task-list">
                 <ListHeader />
-                <ListItem text={list[0].text} importance={list[0].importance} />
-                <ListItem text={list[1].text} importance={list[1].importance} />
+                {itemList}
             </div>
         </div>
     )
