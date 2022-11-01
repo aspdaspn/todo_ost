@@ -9,6 +9,18 @@ export const Input = ({addItem}: Props) => {
     
     const [text, setText] = useState('')
 
+    function addButtonClicked () {
+        if(text)
+        {
+            addItem(createTodo(text))
+            setText('')
+        }
+        else
+        {
+            alert("Bitte zuerst eine Aufgabe erfassen!")
+        }
+    }
+
     return (    
         <Fragment >
             <div className="flex-horizontal">
@@ -17,10 +29,11 @@ export const Input = ({addItem}: Props) => {
                     className="input"
                     placeholder="Aufgabe..."
                     id="txt-add"
+                    value={text}
                     onChange={e => setText(e.target.value)}
                 />
         
-                <button type="submit" className="button" id="btn-add" onClick={() => addItem(createTodo(text))}>
+                <button type="submit" className="button" id="btn-add" onClick={addButtonClicked}>
                     Hinzuzfügen
                 </button>
       
