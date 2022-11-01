@@ -1,5 +1,23 @@
 import { ListHeader } from 'components/controls/ListHeader'
+import { ListItem } from 'components/controls/ListItem'
+import { Todo } from 'models/Todo'
+import { Importance } from 'models/Importance'
 import { Input } from '../controls/Input'
+
+var list: Todo[] = [
+    {        
+        id: "test1",
+        text: "Wohnung Aufräumen",
+        done: false,
+        importance: 0
+    },
+    {        
+        id: "test2",
+        text: "Katze fütter",
+        done: false,
+        importance: 0
+    }
+]
 
 export const Content = () => {
     return (
@@ -7,38 +25,8 @@ export const Content = () => {
             <Input />
             <div className="flex-vertical task-list">
                 <ListHeader />
-                <div className="task-entry">
-                    <input type="checkbox" name="done" className="done-checkbox" />
-                    <label className="bolt" /*name="prio-1"*/>
-                        <i className="fa-solid fa-bolt"></i>
-                    </label>
-                    <label className="bolt" /*name="prio-2"*/>
-                        <i className="fa-solid fa-bolt"></i>
-                    </label>
-                    <label className="bolt" /*name="prio-3"*/>
-                        <i className="fa-solid fa-bolt"></i>
-                    </label>
-                    <label className="task-description">Wohnung aufräumen</label>
-                    <button type="submit" className="button delete" name="delete">
-                        Löschen
-                    </button>
-                </div>
-                <div className="task-entry">
-                    <input type="checkbox" name="done" className="done-checkbox" />
-                    <label className="bolt" /*name="prio-1"*/>
-                        <i className="fa-solid fa-bolt"></i>
-                    </label>
-                    <label className="bolt" /*name="prio-2"*/>
-                        <i className="fa-solid fa-bolt"></i>
-                    </label>
-                    <label className="bolt" /*name="prio-3"*/>
-                        <i className="fa-solid fa-bolt"></i>
-                    </label>
-                    <label className="task-description">Katze füttern</label>
-                    <button type="submit" className="button delete" name="delete">
-                        Löschen
-                    </button>
-                </div>
+                <ListItem text={list[0].text} importance={list[0].importance} />
+                <ListItem text={list[1].text} importance={list[1].importance} />
             </div>
         </div>
     )
