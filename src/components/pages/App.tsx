@@ -1,5 +1,6 @@
 import './App.css'
 import { Header } from "../controls/Header"
+import { Input } from 'components/controls/Input'
 
 export const App = () => {
   return (
@@ -8,26 +9,7 @@ export const App = () => {
         <div>
           <Header />
           <div className="content">
-            <div className="flex-horizontal">
-              <input
-                type="text"
-                className="input"
-                placeholder="Aufgabe..."
-                id="txt-add"
-              />
-              <button type="submit" className="button" id="btn-add">
-                Hinzuzfügen
-              </button>
-            </div>
-            <div className="flex-horizontal flex-left">
-              <input
-                type="checkbox"
-                className="show-checkbox"
-                name="show-all"
-                checked
-              />
-              <label>Alle anzeigen</label>
-            </div>
+            <Input />
             <div className="flex-vertical task-list">
               <div className="task-entry">
                 <label className="prio-header">
