@@ -1,22 +1,12 @@
-import { Input } from './Input'
+import { ListHeader } from 'components/controls/ListHeader'
+import { Input } from '../controls/Input'
 
 export const Content = () => {
     return (
         <div className="content">
             <Input />
             <div className="flex-vertical task-list">
-                <div className="task-entry">
-                    <label className="prio-header">
-                        <span className="sort" data-sort="none">
-                        Priorität
-                        </span>
-                    </label>
-                    <label className="description-header">
-                        <span className="sort" data-sort="none">
-                            Beschreibung
-                        </span>
-                    </label>
-                </div>
+                <ListHeader />
                 <div className="task-entry">
                     <input type="checkbox" name="done" className="done-checkbox" />
                     <label className="bolt" /*name="prio-1"*/>

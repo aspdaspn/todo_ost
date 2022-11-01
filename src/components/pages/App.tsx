@@ -1,6 +1,6 @@
 import './App.css'
 import { Header } from "../controls/Header"
-import { Content } from 'components/controls/Content'
+import { Content } from 'components/widgets/Content'
 import { Fragment } from 'react'
 
 
