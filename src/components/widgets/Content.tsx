@@ -6,7 +6,7 @@ import { Input } from '../controls/Input'
 
 
 
-var defaultList: Todo[] = [
+const defaultList: Todo[] = [
     createTodo("Wohnung aufräumen"),
     createTodo("Katze füttern"),
 ]
@@ -29,7 +29,7 @@ export const Content = () => {
 
     return (
         <div className="content">
-            <Input />
+            <Input addItem={addItem}/>
             <div className="flex-vertical task-list">
                 <ListHeader />
                 {itemList}

@@ -1,7 +1,14 @@
-import { Fragment } from "react"
+import { createTodo, Todo } from "models/Todo"
+import { Fragment, useState } from "react"
 
-export const Input = () => {
+interface Props {
+    addItem: (item: Todo) => void
+}
+
+export const Input = ({addItem}: Props) => {
     
+    const [text, setText] = useState('')
+
     return (    
         <Fragment >
             <div className="flex-horizontal">
@@ -10,10 +17,11 @@ export const Input = () => {
                     className="input"
                     placeholder="Aufgabe..."
                     id="txt-add"
+                    onChange={e => setText(e.target.value)}
                 />
         
-                <button type="submit" className="button" id="btn-add">
-                Hinzuzfügen
+                <button type="submit" className="button" id="btn-add" onClick={() => addItem(createTodo(text))}>
+                    Hinzuzfügen
                 </button>
       
             </div>
