@@ -1,13 +1,12 @@
 import './App.css'
+import { Header } from "../controls/Header"
 
 export const App = () => {
   return (
     <div>
       {
         <div>
-          <header>
-            <div className="app-header">Todo App</div>
-          </header>
+          <Header />
           <div className="content">
             <div className="flex-horizontal">
               <input
