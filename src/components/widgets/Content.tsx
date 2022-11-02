@@ -25,7 +25,17 @@ export const Content = () => {
         setItems(newItems)
     }
 
-    const itemList = items.map(item => <ListItem todo={item} removeItem={removeItem}/>)
+    const updateItem = (id: string, isDone: boolean) => {
+        const newItems = items.map(i => {
+            if(i.id === id) {
+                return {...i, done: isDone }
+            }
+            return i
+        })
+        setItems(newItems)
+    }
+
+    const itemList = items.map(item => <ListItem todo={item} removeItem={removeItem} updateItem={updateItem}/>)
 
     return (
         <div className="content">
