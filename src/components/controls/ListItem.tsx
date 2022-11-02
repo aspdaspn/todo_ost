@@ -1,7 +1,5 @@
 import { Importance } from "models/Importance";
 import { Todo } from "models/Todo";
-import { toUnicode } from "punycode";
-import { useState } from "react";
 
 interface Props {
     todo: Todo,
