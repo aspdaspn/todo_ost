@@ -1,8 +1,9 @@
 import { Importance } from "models/Importance";
+import { Todo } from "models/Todo";
 
 interface Props {
-    text: string,
-    importance: Importance
+    todo: Todo,
+    removeItem: (id: string) => void
 }
 
 
@@ -19,8 +20,8 @@ export const ListItem = (props: Props) => {
             <label className="bolt" /*name="prio-3"*/>
                 <i className="fa-solid fa-bolt"></i>
             </label>
-            <label className="task-description">{props.text}</label>
-            <button type="submit" className="button delete" name="delete">
+            <label className="task-description">{props.todo.text}</label>
+            <button type="submit" className="button delete" name="delete" onClick={() => props.removeItem(props.todo.id)}>
                 Löschen
             </button>
         </div>

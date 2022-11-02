@@ -25,7 +25,7 @@ export const Content = () => {
         setItems(newItems)
     }
 
-    const itemList = items.map(item => <ListItem text={item.text} importance={item.importance} />)
+    const itemList = items.map(item => <ListItem todo={item} removeItem={removeItem}/>)
 
     return (
         <div className="content">
