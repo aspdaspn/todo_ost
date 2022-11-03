@@ -69,6 +69,7 @@ body {
 .show-checkbox {
   width: 15px;
   margin-right: 5px;
+  accent-color: gray;
 }
 
 .task-list {

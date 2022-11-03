@@ -14,6 +14,7 @@ const defaultList: Todo[] = [
 export const Content = () => {
 
     const [items, setItems] = useState(defaultList)
+    const [showAll, setShowAll] = useState(false)
 
     const addItem = (item: Todo) => {
         const newItems = [...items, item]
@@ -35,11 +36,18 @@ export const Content = () => {
         setItems(newItems)
     }
 
-    const itemList = items.map(item => <ListItem todo={item} removeItem={removeItem} updateItem={updateItem}/>)
+    const itemList = items.map(item => {
+        if(showAll) {
+            return <ListItem todo={item} removeItem={removeItem} updateItem={updateItem}/>
+        }
+        else {
+            return item.done ? null : <ListItem todo={item} removeItem={removeItem} updateItem={updateItem}/>
+        }
+    })
 
     return (
         <div className="content">
-            <Input addItem={addItem}/>
+            <Input addItem={addItem} showAll={setShowAll}/>
             <div className="flex-vertical task-list">
                 <ListHeader />
                 {itemList}

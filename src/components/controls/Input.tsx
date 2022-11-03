@@ -3,16 +3,17 @@ import { Fragment, useState } from "react"
 
 interface Props {
     addItem: (item: Todo) => void
+    showAll: (show: boolean) => void
 }
 
-export const Input = ({addItem}: Props) => {
+export const Input = (props: Props) => {
     
     const [text, setText] = useState('')
 
     function addButtonClicked () {
         if(text)
         {
-            addItem(createTodo(text))
+            props.addItem(createTodo(text))
             setText('')
         }
         else
@@ -43,7 +44,7 @@ export const Input = ({addItem}: Props) => {
                     type="checkbox"
                     className="show-checkbox"
                     name="show-all"
-                    checked
+                    onChange={e => props.showAll(e.target.checked)}
                 />
                 <label>Alle anzeigen</label>
             </div>
