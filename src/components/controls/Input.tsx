@@ -22,6 +22,12 @@ export const Input = (props: Props) => {
         }
     }
 
+    const handleKeyDown = (event: { key: string }) => {
+        if (event.key === 'Enter') {
+            addButtonClicked();
+        }
+    };
+
     return (    
         <Fragment >
             <div className="flex-horizontal">
@@ -32,6 +38,7 @@ export const Input = (props: Props) => {
                     id="txt-add"
                     value={text}
                     onChange={e => setText(e.target.value)}
+                    onKeyDown={handleKeyDown}
                 />
         
                 <button type="submit" className="button" id="btn-add" onClick={addButtonClicked}>
