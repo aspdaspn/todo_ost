@@ -1,5 +1,6 @@
 import { ListHeader } from 'components/controls/ListHeader'
 import { ListItem } from 'components/controls/ListItem'
+import { SortingMode } from 'models/SortingMode'
 import { createTodo, Todo } from 'models/Todo'
 import { useState } from 'react'
 import { Input } from '../controls/Input'
@@ -7,14 +8,15 @@ import { Input } from '../controls/Input'
 
 
 const defaultList: Todo[] = [
-    createTodo("Wohnung aufräumen"),
-    createTodo("Katze füttern"),
+    createTodo("Bohnung aufräumen"),
+    createTodo("Aatze füttern"),
 ]
 
 export const Content = () => {
 
     const [items, setItems] = useState(defaultList)
     const [showAll, setShowAll] = useState(false)
+    const [sortingMode, setSortingMode] = useState(SortingMode.DescriptionDescending)
 
     const addItem = (item: Todo) => {
         const newItems = [...items, item]
@@ -36,6 +38,12 @@ export const Content = () => {
         setItems(newItems)
     }
 
+    items.sort((a,b) => {
+        if(a.text.toLowerCase() < b.text.toLowerCase()) return -1;
+        if(a.text.toLowerCase() > b.text.toLowerCase()) return 1;
+        return 0;
+    })
+
     const itemList = items.map(item => {
         if(showAll) {
             return <ListItem todo={item} removeItem={removeItem} updateItem={updateItem}/>
@@ -49,7 +57,7 @@ export const Content = () => {
         <div className="content">
             <Input addItem={addItem} showAll={setShowAll}/>
             <div className="flex-vertical task-list">
-                <ListHeader />
+                <ListHeader setSortingMode={setSortingMode} currentSortingMode={sortingMode}/>
                 {itemList}
             </div>
         </div>
