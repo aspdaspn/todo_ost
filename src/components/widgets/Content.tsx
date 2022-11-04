@@ -26,10 +26,10 @@ export const Content = () => {
         setItems(newItems)
     }
 
-    const updateItem = (id: string, isDone: boolean) => {
+    const updateItem = (item: Todo) => {
         const newItems = items.map(i => {
-            if(i.id === id) {
-                return {...i, done: isDone }
+            if(i.id === item.id) {
+                return item
             }
             return i
         })
