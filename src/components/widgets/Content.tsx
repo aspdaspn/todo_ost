@@ -8,8 +8,8 @@ import { Input } from '../controls/Input'
 
 
 const defaultList: Todo[] = [
-    createTodo("Bohnung aufräumen"),
-    createTodo("Aatze füttern"),
+    createTodo("Wohnung aufräumen"),
+    createTodo("Katze füttern"),
 ]
 
 export const Content = () => {
@@ -39,9 +39,27 @@ export const Content = () => {
     }
 
     items.sort((a,b) => {
-        if(a.text.toLowerCase() < b.text.toLowerCase()) return -1;
-        if(a.text.toLowerCase() > b.text.toLowerCase()) return 1;
-        return 0;
+        switch(sortingMode) {
+            case SortingMode.ImportanceAscending:
+                if(a.importance > b.importance) return -1;
+                if(a.importance < b.importance) return 1;
+                return 0;
+            case SortingMode.ImportanceDescending:
+                if(a.importance < b.importance) return -1;
+                if(a.importance > b.importance) return 1;
+                return 0;
+            case SortingMode.DescriptionAscending:
+                if(a.text.toLowerCase() > b.text.toLowerCase()) return -1;
+                if(a.text.toLowerCase() < b.text.toLowerCase()) return 1;
+                return 0;
+            default:
+            case SortingMode.DescriptionDescending:
+                if(a.text.toLowerCase() < b.text.toLowerCase()) return -1;
+                if(a.text.toLowerCase() > b.text.toLowerCase()) return 1;
+                return 0;
+            
+        }
+
     })
 
     const itemList = items.map(item => {

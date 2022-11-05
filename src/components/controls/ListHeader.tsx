@@ -1,4 +1,4 @@
-import { SortingMode } from "models/SortingMode"
+import { SortingMode } from  "models/SortingMode"
 
 interface Props {
     setSortingMode: (mode: SortingMode) => void
@@ -6,9 +6,6 @@ interface Props {
 }
 
 export const ListHeader = (props: Props) => {
-
-    const htmlCodes = ['', '<i class="fa-solid fa-arrow-up"></i>', '<i class="fa-solid fa-arrow-down"></i>'];
-
     let prioArrow = null
     let descriptionArrow = null
 
@@ -16,6 +13,7 @@ export const ListHeader = (props: Props) => {
         case SortingMode.DescriptionAscending:
             prioArrow = null
             descriptionArrow = <i className="fa-solid fa-arrow-up"></i>
+            props.setSortingMode(props.currentSortingMode)
             break
         case SortingMode.DescriptionDescending:
             prioArrow = null
@@ -34,12 +32,12 @@ export const ListHeader = (props: Props) => {
     return (
         <div className="task-entry">
             <label className="prio-header">
-                <span className="sort" data-sort="none" onClick={() => props.setSortingMode(SortingMode.ImportanceDescending)}>
+                <span className="sort" data-sort="none" onClick={() => props.setSortingMode(props.currentSortingMode === SortingMode.ImportanceDescending ? SortingMode.ImportanceAscending : SortingMode.ImportanceDescending)}>
                     Priorität {prioArrow}
                 </span>
             </label>
             <label className="description-header">
-                <span className="sort" data-sort="none">
+                <span className="sort" data-sort="none" onClick={() => props.setSortingMode(props.currentSortingMode === SortingMode.DescriptionDescending ? SortingMode.DescriptionAscending : SortingMode.DescriptionDescending)}>
                     Beschreibung {descriptionArrow}
                 </span>
             </label>
