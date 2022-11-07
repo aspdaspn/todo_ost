@@ -12,5 +12,5 @@ export const createTodo = (text: string): Todo => ({
 	id: uuid(),
 	text: text,
 	done: false,
-	importance: 2
+	importance: 0
 })

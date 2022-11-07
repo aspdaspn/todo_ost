@@ -1,25 +1,17 @@
-import './App.css';
-import Header from "./Header";
-import Form from "./Form";
-import ListHeader from "./ListHeader";
-import ToDoItem from "./ToDoItem";
-import { Data } from "../../models/Data";
+import './App.css'
+import { Header } from "../controls/Header"
+import { Content } from 'components/widgets/Content'
+import { Fragment } from 'react'
+
 
 export const App = () => {
   return (
     <div>
       {
-        <div>
+        <Fragment>
           <Header />
-          <div className="content">
-            <Form />
-            <div className="flex-vertical task-list">
-              <ListHeader />
-              <ToDoItem id="todo-0" text="Wohnung aufräumen" done={false} importance={0} />
-              <ToDoItem id="todo-1" text="Katze füttern" done={false} importance={0} />
-            </div>
-          </div>
-        </div>
+          <Content />
+        </Fragment>
       }
     </div>
   )
