@@ -64,10 +64,10 @@ export const Content = () => {
 
     const itemList = items.map(item => {
         if(showAll) {
-            return <ListItem todo={item} removeItem={removeItem} updateItem={updateItem}/>
+            return <ListItem key={item.id} todo={item} removeItem={removeItem} updateItem={updateItem}/>
         }
         else {
-            return item.done ? null : <ListItem todo={item} removeItem={removeItem} updateItem={updateItem}/>
+            return item.done ? null : <ListItem key={item.id} todo={item} removeItem={removeItem} updateItem={updateItem}/>
         }
     })
 
