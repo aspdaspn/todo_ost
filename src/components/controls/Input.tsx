@@ -4,6 +4,7 @@ import { Fragment, useState } from "react"
 interface Props {
     addItem: (item: Todo) => void
     showAll: (show: boolean) => void
+    filterItem: (filter: string) => void
 }
 
 export const Input = (props: Props) => {
@@ -37,7 +38,10 @@ export const Input = (props: Props) => {
                     placeholder="Aufgabe..."
                     id="txt-add"
                     value={text}
-                    onChange={e => setText(e.target.value)}
+                    onChange={e => {
+                        setText(e.target.value)
+                        props.filterItem(e.target.value) }
+                    }
                     onKeyDown={handleKeyDown}
                 />
         

@@ -16,6 +16,7 @@ export const Content = () => {
 
     const [items, setItems] = useState(defaultList)
     const [showAll, setShowAll] = useState(false)
+    const [filter, setFilter] = useState('')
     const [sortingMode, setSortingMode] = useState(SortingMode.DescriptionDescending)
 
     const addItem = (item: Todo) => {
@@ -63,17 +64,18 @@ export const Content = () => {
     })
 
     const itemList = items.map(item => {
+        const output = <ListItem key={item.id} todo={item} removeItem={removeItem} updateItem={updateItem}/>
         if(showAll) {
-            return <ListItem key={item.id} todo={item} removeItem={removeItem} updateItem={updateItem}/>
+            return item.text.includes(filter) ? output : <label>Keine Todos gefunden.</label>
         }
         else {
-            return item.done ? null : <ListItem key={item.id} todo={item} removeItem={removeItem} updateItem={updateItem}/>
+            return item.done ? null : output
         }
     })
 
     return (
         <div className="content">
-            <Input addItem={addItem} showAll={setShowAll}/>
+            <Input addItem={addItem} showAll={setShowAll} filterItem={setFilter}/>
             <div className="flex-vertical task-list">
                 <ListHeader setSortingMode={setSortingMode} currentSortingMode={sortingMode}/>
                 {itemList}
