@@ -87,6 +87,7 @@ export const Content = () => {
                 <ListHeader setSortingMode={setSortingMode} currentSortingMode={sortingMode}/>
                 {itemList}
             </div>
+            {filter && !itemListFiltered.length && (<span>Kein Todos gefunden.</span>)}
         </div>
     )
 }
