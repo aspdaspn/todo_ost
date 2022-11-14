@@ -15,6 +15,7 @@ export const Input = (props: Props) => {
         if(text)
         {
             props.addItem(createTodo(text))
+            props.filterItem('')
             setText('')
         }
         else

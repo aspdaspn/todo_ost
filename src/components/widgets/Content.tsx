@@ -63,7 +63,14 @@ export const Content = () => {
 
     })
 
-    const itemList = items.map(item => {
+    const itemListFiltered = items.filter(item => {
+        if (filter) {
+            return item.text.includes(filter)
+        }
+        return true
+    })
+
+    const itemList = itemListFiltered.map(item => {
         const output = <ListItem key={item.id} todo={item} removeItem={removeItem} updateItem={updateItem}/>
         if(showAll) {
             return output
@@ -72,23 +79,14 @@ export const Content = () => {
             return item.done ? null : output
         }
     })
-
-    const itemListFiltered = items.filter(item => {
-        if (filter) {
-            return item.text.includes(filter)
-        }
-        return false
-    })
     
     return (
         <div className="content">
             <Input addItem={addItem} showAll={setShowAll} filterItem={setFilter}/>
             <div className="flex-vertical task-list">
                 <ListHeader setSortingMode={setSortingMode} currentSortingMode={sortingMode}/>
-                    {!!itemListFiltered.length && itemListFiltered}
-                    {!filter && !!itemList.length && itemList}
+                {itemList}
             </div>
-            {filter && !itemListFiltered.length && (<span>Kein Todos gefunden.</span>)}
         </div>
     )
 }
